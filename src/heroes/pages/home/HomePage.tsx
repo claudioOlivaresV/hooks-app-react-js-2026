@@ -11,11 +11,24 @@ import { HeroGrid } from "../../components/HeroGrid";
 import { useState } from "react";
 import { CustomPaginator } from "../../../components/custom/CustomPaginator";
 import CustomBradCrumbs from "../../../components/custom/CustomBradCrumbs";
+import { getHeroByPage } from "../../actions/get-heroes-bypage.action";
+import { useQuery } from "@tanstack/react-query";
 
 export const HomePage = () => {
   const [activeTab, setActiveTab] = useState<
     "all" | "favorites" | "heroes" | "villains"
   >("all");
+
+  // useEffect(() => {
+  //   getHeroByPage().then((heroes) => {});
+  // }, []);
+
+  const { data: heroResponse } = useQuery({
+    queryKey: ["heroes"],
+    queryFn: () => getHeroByPage(),
+  });
+  console.log({ heroResponse });
+
   return (
     <>
       <>
@@ -54,19 +67,19 @@ export const HomePage = () => {
           </TabsList>
           <TabsContent value="all">
             <h1>Todos los personajes</h1>
-            <HeroGrid />
+            <HeroGrid heroes={heroResponse?.heroes ?? []} />
           </TabsContent>
           <TabsContent value="favorites">
             <h1>Favoritos</h1>
-            <HeroGrid />
+            {/* <HeroGrid /> */}
           </TabsContent>
           <TabsContent value="heroes">
             <h1>Heroes</h1>
-            <HeroGrid />
+            {/* <HeroGrid /> */}
           </TabsContent>
           <TabsContent value="villains">
             <h1>Villains</h1>
-            <HeroGrid />
+            {/* <HeroGrid /> */}
           </TabsContent>
         </Tabs>
 

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { HomePage } from "../heroes/pages/home/HomePage";
 import { HeroPage } from "../heroes/pages/hero/HeroPage";
-import { SearchPage } from "../heroes/pages/search/SearchPage";
 import { AdminPage } from "../admin/pages/AdminPage";
 import { HeroesLayout } from "../heroes/layouts/HeroesLayout";
 import { AdminLayout } from "../admin/layouts/AdminLayout";
@@ -19,12 +18,16 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/hero/1",
+        path: "/hero/:slug",
         element: <HeroPage />,
       },
       {
         path: "/search",
         element: <SearchPage />,
+      },
+      {
+        path: "*",
+        element: <h1>404</h1>,
       },
     ],
   },
