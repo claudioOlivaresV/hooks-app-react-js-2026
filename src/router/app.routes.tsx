@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/hero/:slug",
+        path: "/hero/:idSlug",
         element: <HeroPage />,
       },
       {
