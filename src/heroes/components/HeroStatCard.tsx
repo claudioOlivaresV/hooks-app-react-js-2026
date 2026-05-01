@@ -1,4 +1,3 @@
-import { Trophy } from "lucide-react";
 import {
   Card,
   CardContent,
